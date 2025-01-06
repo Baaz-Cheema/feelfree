@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Reaction;
 use App\Models\Tag;
@@ -28,6 +29,13 @@ class DatabaseSeeder extends Seeder
             Reaction::create($reaction);
         }
 
-        Post::factory()->count(10)->create();
+        Post::factory()
+            ->count(10)
+            ->create()
+            ->each(function (Post $post) {
+                $post->tags()->attach(Tag::all()->random(3));
+                $post->reactions()->attach(Reaction::first());
+                $post->comments()->saveMany(Comment::factory()->count(3)->make());
+            });
     }
 }

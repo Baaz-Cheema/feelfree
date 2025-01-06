@@ -27,6 +27,6 @@ class Post extends Model
 
     public function reactions(): MorphToMany
     {
-        return $this->morphToMany(Reaction::class, 'reactionable');
+        return $this->morphToMany(Reaction::class, 'reactionabl');
     }
 }

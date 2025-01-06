@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,9 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'post_id' => Post::factory(),
+            'parent_id' => null,
+            'body' => $this->faker->sentence(),
         ];
     }
 }
