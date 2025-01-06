@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use App\Models\Post;
+use App\Models\Reaction;
 use App\Models\Tag;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -22,9 +23,9 @@ class DatabaseSeeder extends Seeder
             Tag::create(['name' => $tag]);
         }
 
-        $reactions = [['name' => 'support', 'emoji' => '🤗 ']];
+        $reactions = [['name' => 'support', 'emoji' => '🤗']];
         foreach ($reactions as $reaction) {
-            User::create($reaction);
+            Reaction::create($reaction);
         }
 
         Post::factory()->count(10)->create();

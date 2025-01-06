@@ -21,8 +21,8 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->sentence(),
             'body' => $this->faker->paragraph(),
-            'views' => random_int(1, 1000),
-            'impressions' => random_int(1, 1000),
+            'views' => $views = random_int(1, 1000),
+            'impressions' => random_int($views, $views + 1000),
         ];
     }
 }
