@@ -12,4 +12,4 @@ Route::get('/', function () {
         'recentPosts' => $recentPosts,
         'popularPosts' => $popularPosts
     ]);
-});
+})->name('home');

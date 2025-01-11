@@ -70,7 +70,8 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Recent Posts -->
             @forelse($recentPosts as $recentPost)
-            <div class="bg-white rounded-lg shadow-md p-6 border {{ $recentPost->id == request()->route('id') ? 'border-green-500 animate-bounce-once' : 'border-green-100' }}">
+                <a href="#">
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-green-100">
                 <div class="flex items-center justify-between mb-2">
                     <span class="text-sm text-gray-500">{{ $recentPost->created_at->diffForHumans() }}</span>
                 </div>
@@ -106,6 +107,7 @@
                     </div>
                 </div>
             </div>
+                </a>
             @empty
                 <p class="text-gray-600">No recent posts found.</p>
             @endforelse

@@ -23,7 +23,7 @@ class CreatePost extends Component
 
         $post->tags()->attach(Tag::find($this->form->tag));
 
-        return $this->redirect('/');
+        $this->redirect('/#' . $post->uuid);
     }
 
     public function render()
