@@ -19,10 +19,9 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence(),
+            'uuid' => $this->faker->uuid(),
             'body' => $this->faker->paragraph(),
             'views' => $views = random_int(1, 1000),
-            'impressions' => random_int($views, $views + 1000),
         ];
     }
 }
