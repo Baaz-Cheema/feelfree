@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Posts;
 
 use App\Livewire\Forms\PostForm;
 use App\Models\Post;
@@ -24,10 +24,5 @@ class CreatePost extends Component
         $post->tags()->attach(Tag::find($this->form->tag));
 
         $this->redirect('/#' . $post->uuid);
-    }
-
-    public function render()
-    {
-        return view('livewire.create-post');
     }
 }

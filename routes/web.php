@@ -13,3 +13,11 @@ Route::get('/', function () {
         'popularPosts' => $popularPosts
     ]);
 })->name('home');
+
+Route::get('recent', function (){
+    $recentPosts = App\Models\Post::query()->withCount(['comments'])->with(['tags'])->latest()->get();
+
+    return view('posts.recent', [
+        'recentPosts' => $recentPosts,
+    ]);
+})->name('recent');

@@ -1,46 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Styles / Scripts -->
-        @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @else
-            @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @endif
-
-        <style>
-            @keyframes bounce-once {
-                0%, 100% {
-                    transform: translateY(0);
-                }
-                50% {
-                    transform: translateY(-10px);
-                }
-            }
-            .animate-bounce-once {
-                animation: bounce-once 1s ease;
-            }
-        </style>
-    </head>
-    <body class="min-h-screen bg-white">
-    <!-- Header -->
-    <header class="bg-white shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 py-4">
-            <div class="text-2xl font-bold text-green-600">
-                FeelFree
-            </div>
-        </div>
-    </header>
-
+<x-layouts>
+    <x-header/>
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-green-50 to-green-100">
         <div class="max-w-7xl mx-auto px-4 py-20 text-center">
@@ -51,7 +10,7 @@
                 "In sharing our worries, we find strength. In supporting others, we find purpose."
             </p>
 
-            <livewire:create-post />
+            <livewire:posts.create-post />
 
         </div>
     </div>
@@ -60,12 +19,12 @@
     <div class="max-w-7xl mx-auto px-4 py-12">
         <div class="flex items-center justify-between mb-8">
             <h2 class="text-2xl font-bold text-gray-800">Recent Posts</h2>
-            <button class="text-green-600 hover:text-green-700 font-medium flex items-center">
+            <a href="{{ route('recent') }}" class="text-green-600 hover:text-green-700 font-medium flex items-center">
                 View All
                 <svg class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
-            </button>
+            </a>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Recent Posts -->
@@ -113,5 +72,5 @@
             @endforelse
         </div>
     </div>
-    </body>
-</html>
+
+</x-layouts>
