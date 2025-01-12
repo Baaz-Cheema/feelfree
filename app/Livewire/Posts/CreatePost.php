@@ -6,6 +6,7 @@ use App\Livewire\Forms\PostForm;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class CreatePost extends Component

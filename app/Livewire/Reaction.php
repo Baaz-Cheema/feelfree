@@ -23,9 +23,4 @@ class Reaction extends Component
         $this->reactionCount++;
         Post::query()->where('uuid', $this->postId)->first()->reactions()->attach(\App\Models\Reaction::where('name', $this->reaction)->first());
     }
-
-    public function render()
-    {
-        return view('livewire.reaction');
-    }
 }

@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
+use App\Livewire\Posts\Index;
+use App\Livewire\Posts\Show;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $recentPosts = App\Models\Post::query()->withCount(['comments'])->with(['tags'])->latest()->limit(4)->get();
-    $popularPosts = App\Models\Post::query()->withCount('comments')->orderByDesc('views')->limit(4)->get();
+    $popularPosts = App\Models\Post::query()->withCount(['comments'])->with(['tags'])->latest('views')->limit(4)->get();
 
     return view('home', [
         'recentPosts' => $recentPosts,
@@ -14,10 +16,8 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::get('recent', function (){
-    $recentPosts = App\Models\Post::query()->withCount(['comments'])->with(['tags'])->latest()->get();
+Route::get('/posts', Index::class)
+    ->name('posts.index');
 
-    return view('posts.recent', [
-        'recentPosts' => $recentPosts,
-    ]);
-})->name('recent');
+Route::get('/posts/{post:uuid}', Show::class)
+    ->name('posts.show');
