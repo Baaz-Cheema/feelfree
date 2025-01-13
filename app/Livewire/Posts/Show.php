@@ -12,6 +12,7 @@ class Show extends Component
     public function mount()
     {
         $this->post->load(['comments', 'tags']);
+        $this->post->increment('views');
     }
 
     public function render()

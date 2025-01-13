@@ -1,27 +1,42 @@
-<div class="h-screen flex justify-center items-center">
-    <div class="max-w-7xl mx-auto">
-        <div class="bg-white rounded-lg shadow-md p-6 border border-green-100">
-            <div class="flex items-center justify-between mb-2">
-                <span class="text-sm text-gray-500">sss</span>
+<!-- Comments Section -->
+<div class="bg-white rounded-lg shadow-md p-6 border border-green-100">
+    <h3 class="text-xl font-semibold text-gray-800 mb-6">Comments</h3>
+
+    <!-- New Comment Form -->
+    <div class="mb-8">
+        <form wire:submit.prevent="save">
+            <div class="mb-4">
+                    <textarea
+                        wire:model="body"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        rows="3"
+                        placeholder="Add a comment..."
+                    ></textarea>
             </div>
-            <p class="text-gray-600 mb-2">
-                body
-            </p>
-            <div class="flex flex-wrap mb-4">
-{{--                @foreach($post->tags as $tag)--}}
-{{--                    <div--}}
-{{--                        class="{{ $loop->first ? '' : 'px-3' }} text-sm bg-green-50 text-green-600 rounded-full">--}}
-{{--                        #{{ $tag->name }}--}}
-{{--                    </div>--}}
-{{--                @endforeach--}}
+            <div class="flex justify-end">
+                <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                    Comment
+                </button>
             </div>
-            <div class="flex items-center justify-between pt-4 border-t border-green-100">
-                <div class="flex items-center space-x-4 text-gray-500">
+        </form>
+    </div>
+
+    <!-- Comments List -->
+    <div class="space-y-6">
+        @forelse($comments as $comment)
+            <div class="border-b border-gray-100 pb-6 last:border-b-0 last:pb-0">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm text-gray-500">{{ $comment->created_at->diffForHumans() }}</span>
+                    <div class="flex items-center space-x-2">
+                        <livewire:reaction :reactionableId="$comment->id" reactionableType="comment" reaction="support"/>
+                    </div>
                 </div>
-                <div class="flex items-center space-x-4">
-{{--                    <livewire:reaction :postId="$post->uuid" reaction="support" :key="$post->id . $post->uuid"/>--}}
-                </div>
+                <p class="text-gray-600">
+                    {{ $comment->body }}
+                </p>
             </div>
-        </div>
+        @empty
+            <p class="text-gray-500 text-center py-4">No comments yet. Be the first to comment!</p>
+        @endforelse
     </div>
 </div>

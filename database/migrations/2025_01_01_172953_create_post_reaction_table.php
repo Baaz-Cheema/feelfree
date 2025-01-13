@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reactionabls', function (Blueprint $table) {
+        Schema::create('reactionables', function (Blueprint $table) {
             $table->id();
             $table->foreignId('reaction_id')->constrained('reactions')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->morphs('reactionabl');
+            $table->morphs('reactionable');
             $table->timestamps();
         });
     }

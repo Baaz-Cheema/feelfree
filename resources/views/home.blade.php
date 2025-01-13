@@ -62,7 +62,7 @@
                                     </svg>
                                     <span class="text-sm">{{ $post->views }}</span>
                                 </div>
-                                <livewire:reaction :postId="$post->uuid" reaction="support"/>
+                                <livewire:reaction :reactionableId="$post->uuid" reactionableType="post" reaction="support"/>
                                 <button class="flex items-center text-green-600 hover:text-green-700 transition-colors">
                                     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
                                          viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -128,7 +128,7 @@
                                     </svg>
                                     <span class="text-sm">{{ $post->views }}</span>
                                 </div>
-                                <livewire:reaction :postId="$post->uuid" reaction="support"/>
+                                <livewire:reaction :reactionableId="$post->uuid" reactionableType="post" reaction="support"/>
                                 <button class="flex items-center text-green-600 hover:text-green-700 transition-colors">
                                     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
                                          viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">

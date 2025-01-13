@@ -2,20 +2,29 @@
 
 namespace App\Livewire;
 
+use App\Models\Comment;
 use App\Models\Post;
 use Livewire\Component;
 
 class Reaction extends Component
 {
-    public string $postId;
+    public string $reactionableId;
+    public string $reactionableType;
     public string $reaction;
-    public string $reactionCount;
+    public int $reactionCount = 0;
 
-    public function mount(string $postId, string $reaction)
+    /**
+     * @param string $reactionableType The type of the reactionable model eg post or comment
+     */
+    public function mount(string $reactionableId, string $reactionableType, string $reaction)
     {
-        $this->postId = $postId;
+        $this->reactionableId = $reactionableId;
+        $this->reactionableType = $reactionableType;
         $this->reaction = $reaction;
-        $this->reactionCount = Post::query()->where('uuid', $this->postId)->first()->reactions()->where('name', $this->reaction)->count();
+        match (true) {
+            $this->reactionableType === 'post' => Post::query()->where('uuid', $this->reactionableId)->first()->reactions()->where('name', $this->reaction)->count(),
+            $this->reactionableType === 'comment' => Comment::find($this->reactionableId)->reactions()->where('name', $this->reaction)->count(),
+        };
     }
 
     public function save()
