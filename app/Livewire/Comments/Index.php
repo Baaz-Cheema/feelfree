@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Comments;
 
 use App\Models\Post;
@@ -16,7 +18,7 @@ class Index extends Component
     public function save()
     {
         $this->post->comments()->create([
-            'body' => $this->body
+            'body' => $this->body,
         ]);
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Posts;
 
 use App\Models\Post;
@@ -34,7 +36,7 @@ class Index extends Component
         $this->hasMore = count($recentPosts) >= $this->perPage;
 
         return view('livewire.posts.index', [
-            'recentPosts' => $recentPosts
+            'recentPosts' => $recentPosts,
         ]);
     }
 }

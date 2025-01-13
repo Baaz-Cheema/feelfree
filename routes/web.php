@@ -12,7 +12,7 @@ Route::get('/', function () {
 
     return view('home', [
         'recentPosts' => $recentPosts,
-        'popularPosts' => $popularPosts
+        'popularPosts' => $popularPosts,
     ]);
 })->name('home');
 

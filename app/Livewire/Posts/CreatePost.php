@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire\Posts;
 
 use App\Livewire\Forms\PostForm;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Support\Str;
-use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class CreatePost extends Component
@@ -19,7 +20,7 @@ class CreatePost extends Component
 
         $post = Post::create([
             'uuid' => Str::uuid(),
-            'body' => $this->form->body
+            'body' => $this->form->body,
         ]);
 
         $post->tags()->attach(Tag::find($this->form->tag));
