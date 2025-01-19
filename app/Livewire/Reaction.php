@@ -23,6 +23,7 @@ class Reaction extends Component
         $this->reactionableId = $reactionableId;
         $this->reactionableType = $reactionableType;
         $this->reaction = $reaction;
+
         match (true) {
             $this->reactionableType === 'post' => Post::query()->where('uuid', $this->reactionableId)->first()->reactions()->where('name', $this->reaction)->count(),
             $this->reactionableType === 'comment' => Comment::find($this->reactionableId)->reactions()->where('name', $this->reaction)->count(),
@@ -32,6 +33,10 @@ class Reaction extends Component
     public function save()
     {
         $this->reactionCount++;
-        Post::query()->where('uuid', $this->postId)->first()->reactions()->attach(\App\Models\Reaction::where('name', $this->reaction)->first());
+
+        match (true) {
+            $this->reactionableType === 'post' => Post::query()->where('uuid', $this->reactionableId)->first()->reactions()->attach(\App\Models\Reaction::where('name', $this->reaction)->first()),
+            $this->reactionableType === 'comment' => Comment::find($this->reactionableId)->reactions()->attach(\App\Models\Reaction::where('name', $this->reaction)->first()),
+        };
     }
 }
