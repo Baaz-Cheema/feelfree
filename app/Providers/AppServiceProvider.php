@@ -24,6 +24,19 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureModels();
+
+        seo()
+            ->site('FeelFree — Share Your Thoughts, Find Your Support')
+            ->title(
+                default: 'FeelFree — Share Your Thoughts, Find Your Support',
+                modify: fn (string $title) => $title . ' | FeelFree'
+            )
+            ->description(default: 'Share worries anonymously and get support from the community.')
+            ->image(default: fn () => asset('logo.png'))
+            ->favicon()
+            ->twitter()
+            ->twitterSite('@abrardev99')
+            ;
     }
 
     /**

@@ -2,15 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Models\Tag;
-use Livewire\Livewire;
-use Illuminate\Support\Str;
 use App\Livewire\Posts\CreatePost;
 use App\Livewire\Posts\Show;
 use App\Models\Post;
+use App\Models\Tag;
+use Illuminate\Support\Str;
+use Livewire\Livewire;
 
 it('creates a post', function () {
-
     Tag::create([
         'name' => $tagName = Str::random(10),
     ]);
@@ -38,11 +37,9 @@ it('validates the post body', function () {
         ->assertHasErrors(['form.body' => ['max']]);
 });
 
-it('shows posts', function(){
+it('shows posts', function () {
     $post = Post::factory()->create();
 
     Livewire::test(Show::class, ['post' => $post])
-        ->assertSee($post->body)
-        ;
-
+        ->assertSee($post->body);
 });

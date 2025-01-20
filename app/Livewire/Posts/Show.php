@@ -19,7 +19,10 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.posts.show')
-                ->title(str($this->post->body)->limit(20, ''));
+        seo()
+            ->title(str($this->post->body)->limit(20, '')->toString())
+            ->description(str($this->post->body)->limit(160)->toString());
+
+        return view('livewire.posts.show');
     }
 }

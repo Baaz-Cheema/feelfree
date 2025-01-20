@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Livewire\Posts;
 
-use App\Models\Tag;
-use App\Models\Post;
-use Livewire\Component;
-use Illuminate\Support\Str;
 use App\Livewire\Forms\PostForm;
+use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
+use Livewire\Component;
 
 class CreatePost extends Component
 {
@@ -23,6 +23,7 @@ class CreatePost extends Component
 
         if (RateLimiter::tooManyAttempts($key, 10)) {
             $this->addError('form.body', 'Oh! Too many attempts.');
+
             return;
         }
 

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Livewire\Comments;
 
 use App\Models\Post;
-use Livewire\Component;
-use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\RateLimiter;
+use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 class Index extends Component
 {
@@ -22,6 +22,7 @@ class Index extends Component
 
         if (RateLimiter::tooManyAttempts($key, 10)) {
             $this->addError('comment', 'Too many attempts. Please try again later.');
+
             return;
         }
 

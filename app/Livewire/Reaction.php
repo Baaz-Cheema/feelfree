@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
-use App\Models\Post;
 use App\Models\Comment;
-use Livewire\Component;
-use Illuminate\Container\Attributes\DB;
+use App\Models\Post;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\DB as FacadesDB;
+use Livewire\Component;
 
 class Reaction extends Component
 {
@@ -35,10 +33,11 @@ class Reaction extends Component
 
     public function save()
     {
-        $key = 'create-reaction-' . request()->ip() .  $this->reactionableId . $this->reactionableType;
+        $key = 'create-reaction-' . request()->ip() . $this->reactionableId . $this->reactionableType;
 
         if (RateLimiter::tooManyAttempts($key, 1)) {
             $this->addError('reaction', 'Oh! Too many attempts.');
+
             return;
         }
 

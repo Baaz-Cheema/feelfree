@@ -1,11 +1,12 @@
 <?php
 
-use App\Models\Post;
-use Livewire\Livewire;
+declare(strict_types=1);
+
 use App\Livewire\Reaction;
-use Illuminate\Support\Str;
+use App\Models\Post;
 use App\Models\Reaction as ModelsReaction;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Livewire\Livewire;
 
 it('creates a reaction on post', function () {
     $post = Post::factory()->create();

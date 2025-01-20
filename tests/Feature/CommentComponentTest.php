@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
+use App\Livewire\Comments\Index;
 use App\Models\Post;
 use Livewire\Livewire;
-use App\Livewire\Comments\Index;
 
 it('creates a comment', function () {
-
     $post = Post::factory()->create();
 
     Livewire::test(Index::class, ['post' => $post])

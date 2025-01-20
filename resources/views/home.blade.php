@@ -2,7 +2,7 @@
     <x-header/>
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-green-50 to-green-100">
-        <div class="max-w-7xl mx-auto px-4 py-20 text-center">
+        <div class="max-w-7xl mx-auto px-4 pb-12 text-center">
             <h1 class="text-4xl font-bold text-green-800 mb-4">
                 Share Your Thoughts, Find Your Support
             </h1>
