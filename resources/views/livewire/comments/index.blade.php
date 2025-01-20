@@ -12,6 +12,7 @@
                         rows="3"
                         placeholder="Add a comment..."
                     ></textarea>
+                    @error('comment') <span class="error text-red-500">{{ $message }}</span> @enderror
             </div>
             <div class="flex justify-end">
                 <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">

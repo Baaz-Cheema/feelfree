@@ -32,12 +32,15 @@
             <!-- Recent Posts -->
             @forelse($recentPosts as $post)
                 <a href="{{ route('posts.show', $post->uuid) }}">
-                    <div class="bg-white rounded-lg shadow-md p-6 border border-green-100">
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-green-100 h-48">
                         <div class="flex items-center justify-between mb-2">
                             <span class="text-sm text-gray-500">{{ $post->created_at->diffForHumans() }}</span>
                         </div>
                         <p class="text-gray-600 mb-2">
-                            {{ $post->body }}
+                            {{ str($post->body)->limit(100, '...') }}
+                            @if(strlen($post->body) > 100)
+                                <span><a href="{{ route('posts.show', $post->uuid) }}" class="text-green-600 hover:underline">Read more</a></span>
+                            @endif
                         </p>
                         <div class="flex flex-wrap mb-4">
                             @foreach($post->tags as $tag)

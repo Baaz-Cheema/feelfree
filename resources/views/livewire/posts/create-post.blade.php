@@ -8,6 +8,7 @@
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
                             placeholder="Share your thoughts anonymously..."
                         ></textarea>
+                        @error('form.body') <span class="error text-red-500">{{ $message }}</span> @enderror
         </div>
         <div class="text-left">
             <select
@@ -21,6 +22,7 @@
                 @endforeach
             </select>
             <span class="text-sm text-gray-400">Tag your worry so people can find similar worries and share support</span>
+            @error('form.tag') <span class="error text-red-500">{{ $message }}</span> @enderror
         </div>
         <div class="text-right">
             <button
