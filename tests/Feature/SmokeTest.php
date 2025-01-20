@@ -17,6 +17,8 @@ test('show post page returns a successful response', function () {
 });
 
 test('reaction component exists in home page', function () {
+    Post::factory()->create();
+
     $this->get(route('home'))
         ->assertSeeLivewire(Reaction::class);
 });

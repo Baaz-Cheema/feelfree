@@ -6,6 +6,8 @@ namespace App\Livewire;
 
 use App\Models\Comment;
 use App\Models\Post;
+use Illuminate\Container\Attributes\DB;
+use Illuminate\Support\Facades\DB as FacadesDB;
 use Livewire\Component;
 
 class Reaction extends Component
@@ -25,8 +27,8 @@ class Reaction extends Component
         $this->reaction = $reaction;
 
         match (true) {
-            $this->reactionableType === 'post' => Post::query()->where('uuid', $this->reactionableId)->first()->reactions()->where('name', $this->reaction)->count(),
-            $this->reactionableType === 'comment' => Comment::find($this->reactionableId)->reactions()->where('name', $this->reaction)->count(),
+            $this->reactionableType === 'post' => $this->reactionCount = Post::query()->where('uuid', $this->reactionableId)->first()->reactions()->where('name', $this->reaction)->count(),
+            $this->reactionableType === 'comment' => $this->reactionCount = Comment::find($this->reactionableId)->reactions()->where('name', $this->reaction)->count(),
         };
     }
 
