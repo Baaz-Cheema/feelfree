@@ -21,8 +21,8 @@ class CreatePost extends Component
 
         $key = 'create-post-' . request()->ip();
 
-        if (RateLimiter::tooManyAttempts($key, 2)) {
-            $this->addError('form.body', 'Too many attempts. Please try again later.');
+        if (RateLimiter::tooManyAttempts($key, 10)) {
+            $this->addError('form.body', 'Oh! Too many attempts.');
             return;
         }
 

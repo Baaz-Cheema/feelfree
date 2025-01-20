@@ -25,11 +25,11 @@
     <!-- Comments List -->
     <div class="space-y-6">
         @forelse($comments as $comment)
-            <div class="border-b border-gray-100 pb-6 last:border-b-0 last:pb-0">
+            <div class="border-b border-gray-100 pb-6 last:border-b-0 last:pb-0" wire:key="comment-{{ $comment->id }}">
                 <div class="flex items-center justify-between mb-2">
                     <span class="text-sm text-gray-500">{{ $comment->created_at->diffForHumans() }}</span>
                     <div class="flex items-center space-x-2">
-                        <livewire:reaction :reactionableId="$comment->id" reactionableType="comment" reaction="support"/>
+                        <livewire:reaction :reactionableId="$comment->id" reactionableType="comment" reaction="support" :key="$comment->id"/>
                     </div>
                 </div>
                 <p class="text-gray-600">

@@ -20,7 +20,7 @@ class Index extends Component
     {
         $key = 'create-comment-' . request()->ip();
 
-        if (RateLimiter::tooManyAttempts($key, 2)) {
+        if (RateLimiter::tooManyAttempts($key, 10)) {
             $this->addError('comment', 'Too many attempts. Please try again later.');
             return;
         }

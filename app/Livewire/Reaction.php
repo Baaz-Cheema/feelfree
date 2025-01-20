@@ -35,10 +35,10 @@ class Reaction extends Component
 
     public function save()
     {
-        $key = 'create-reaction-' . request()->ip();
+        $key = 'create-reaction-' . request()->ip() .  $this->reactionableId . $this->reactionableType;
 
-        if (RateLimiter::tooManyAttempts($key, 2)) {
-            $this->addError('reaction', 'Too many attempts. Please try again later.');
+        if (RateLimiter::tooManyAttempts($key, 1)) {
+            $this->addError('reaction', 'Oh! Too many attempts.');
             return;
         }
 
