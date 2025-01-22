@@ -15,6 +15,7 @@ class Reaction extends Component
     public string $reactionableType;
     public string $reaction;
     public int $reactionCount = 0;
+    public string $emoji = '🙌';
 
     /**
      * @param string $reactionableType The type of the reactionable model eg post or comment

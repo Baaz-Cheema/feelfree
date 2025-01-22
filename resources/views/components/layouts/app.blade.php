@@ -14,11 +14,14 @@
     @else
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
-
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css" />
+    @livewireStyles
     <x-seo::meta />
 
 </head>
 <body class="min-h-screen bg-white">
     {{ $slot }}
+
+    @livewireScriptConfig
 </body>
 </html>

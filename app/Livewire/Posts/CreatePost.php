@@ -6,6 +6,7 @@ namespace App\Livewire\Posts;
 
 use App\Livewire\Forms\PostForm;
 use App\Models\Post;
+use App\Models\Reaction;
 use App\Models\Tag;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
@@ -32,9 +33,11 @@ class CreatePost extends Component
         $post = Post::create([
             'uuid' => Str::uuid(),
             'body' => $this->form->body,
+            'views' => 0,
         ]);
 
         $post->tags()->attach(Tag::find($this->form->tag));
+        $post->reactions()->attach(Reaction::whereName('support')->first());
 
         $this->redirect('/posts/' . $post->uuid);
     }

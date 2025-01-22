@@ -35,8 +35,7 @@ class AppServiceProvider extends ServiceProvider
             ->image(default: fn () => asset('logo.png'))
             ->favicon()
             ->twitter()
-            ->twitterSite('@abrardev99')
-            ;
+            ->twitterSite('@abrardev99');
     }
 
     /**

@@ -6,9 +6,6 @@
             <h1 class="text-4xl font-bold text-green-800 mb-4">
                 Share Your Thoughts, Find Your Support
             </h1>
-            <p class="text-xl text-green-600 max-w-2xl mx-auto mb-8">
-                "In sharing our worries, we find strength. In supporting others, we find purpose."
-            </p>
 
             <livewire:posts.create-post/>
 
@@ -69,7 +66,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                               d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"/>
                                     </svg>
-                                    <span class="text-sm">7 Comment</span>
+                                    <span x-data x-tooltip.raw="Leave a comment"  class="text-sm">{{ $post->comments_count }} Comment</span>
                                 </button>
                             </div>
                         </div>
@@ -135,7 +132,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                               d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"/>
                                     </svg>
-                                    <span class="text-sm">7 Comment</span>
+                                    <span x-data x-tooltip.raw="Leave a comment"  class="text-sm">{{ $post->comments_count }} Comment</span>
                                 </button>
                             </div>
                         </div>

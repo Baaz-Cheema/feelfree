@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             Tag::create(['name' => $tag]);
         }
 
-        $reactions = [['name' => 'support', 'emoji' => '🤗']];
+        $reactions = [['name' => 'support', 'emoji' => '🙌']];
         foreach ($reactions as $reaction) {
             Reaction::create($reaction);
         }
