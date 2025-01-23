@@ -76,6 +76,6 @@ jobs:
       - name: Tests (Pest)
         run: vendor/bin/pest
       - name: php-cs-fixer
-        run: $HOME/.composer/vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php
+        run: vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php
       - name: phpstan
         run: vendor/bin/phpstan analyse
