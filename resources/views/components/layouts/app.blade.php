@@ -22,6 +22,7 @@
 <body class="min-h-screen bg-white">
     {{ $slot }}
 
+    <x-footer />
     @livewireScriptConfig
 </body>
 </html>
