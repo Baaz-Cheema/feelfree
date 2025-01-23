@@ -1,77 +1,67 @@
-name: Check
+name: CI
 
 on:
   push:
   pull_request:
-    branches:
-      - main
+    branches: [ master ]
 
 jobs:
-  ci:
+  pest:
+    name: Tests (Pest)
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
-      matrix:
-        php: [8.3]
-
-    name: Tests
+          fail-fast: true
+          matrix:
+            php: [8.2]
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v2
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.2
+        tools: composer:v2
+        coverage: none
+    - name: Install composer dependencies
+      run: composer require "laravel/framework:^${{matrix.laravel}}.0"
+    - name: Run tests
+      run: vendor/bin/pest
 
-      - name: Cache Dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.composer/cache/files
-          key: dependencies-php-composer-${{ hashFiles('composer.lock') }}
+  phpstan:
+    name: Static analysis (PHPStan)
+    runs-on: ubuntu-latest
 
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.2
+        tools: composer:v2
+        coverage: none
+    - name: Install composer dependencies
+      run: composer install
+    - name: Run phpstan
+      run: vendor/bin/phpstan analyse
+
+  php-cs-fixer:
+    name: Code style (php-cs-fixer)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
-          extensions: json, dom, curl, libxml, mbstring, zip
+          php-version: 8.2
           tools: composer:v2
-          coverage: xdebug
-
-      - name: Set up Node & NPM
-        uses: actions/setup-node@v2
+          coverage: none
+      - name: Install php-cs-fixer
+        run: composer global require friendsofphp/php-cs-fixer
+      - name: Run php-cs-fixer
+        run: $HOME/.composer/vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php
+      - name: Commit changes from php-cs-fixer
+        uses: EndBug/add-and-commit@v5
         with:
-          node-version: '18.x'
-
-      - name: Setup Problem Matches
-        run: |
-          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
-          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-
-      - name: Install PHP dependencies
-        run: composer install --no-interaction --no-progress --ansi
-
-      - name: Get NPM cache directory
-        id: npm-cache-dir
-        shell: bash
-        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
-
-      - name: Cache dependencies
-        id: npm-cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.npm-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm install
-
-      - name: Build dependencies
-        run: npm run build
-
-      - name: Prepare Laravel
-        run: |
-          cp .env.example .env
-          php artisan key:generate
-
-      - name: Check
-        run: ./check
+          author_name: "PHP CS Fixer"
+          author_email: "phpcsfixer@example.com"
+          message: Fix code style (php-cs-fixer)
