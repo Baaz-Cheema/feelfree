@@ -26,9 +26,9 @@ class Reaction extends Component
         $this->reactionableType = $reactionableType;
         $this->reaction = $reaction;
 
-        match (true) {
-            $this->reactionableType === 'post' => $this->reactionCount = Post::query()->where('uuid', $this->reactionableId)->first()->reactions()->where('name', $this->reaction)->count(),
-            $this->reactionableType === 'comment' => $this->reactionCount = Comment::find($this->reactionableId)->reactions()->where('name', $this->reaction)->count(),
+        match ($this->reactionableType) {
+            'comment' => $this->reactionCount = Comment::find($this->reactionableId)->reactions()->where('name', $this->reaction)->count(),
+            default => $this->reactionCount = Post::query()->where('uuid', $this->reactionableId)->first()->reactions()->where('name', $this->reaction)->count()
         };
     }
 
@@ -46,9 +46,9 @@ class Reaction extends Component
 
         $this->reactionCount++;
 
-        match (true) {
-            $this->reactionableType === 'post' => Post::query()->where('uuid', $this->reactionableId)->first()->reactions()->attach(\App\Models\Reaction::where('name', $this->reaction)->first()),
-            $this->reactionableType === 'comment' => Comment::find($this->reactionableId)->reactions()->attach(\App\Models\Reaction::where('name', $this->reaction)->first()),
+        match ($this->reactionableType) {
+            'comment' => Comment::find($this->reactionableId)->reactions()->attach(\App\Models\Reaction::where('name', $this->reaction)->first()),
+            default => Post::query()->where('uuid', $this->reactionableId)->first()->reactions()->attach(\App\Models\Reaction::where('name', $this->reaction)->first()),
         };
     }
 }
