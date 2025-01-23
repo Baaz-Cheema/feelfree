@@ -75,3 +75,5 @@ jobs:
 
       - name: Tests
         run: composer test
+      - name: php-cs-fixer
+        run: $HOME/.composer/vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php
