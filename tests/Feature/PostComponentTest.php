@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 use App\Livewire\Posts\CreatePost;
-use App\Livewire\Posts\Show;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
+use function Pest\Laravel\get;
 
 it('creates a post', function () {
     Tag::create([
@@ -40,6 +40,6 @@ it('validates the post body', function () {
 it('shows posts', function () {
     $post = Post::factory()->create();
 
-    Livewire::test(Show::class, ['post' => $post])
+    get(route('posts.show', $post->uuid))
         ->assertSee($post->body);
 });

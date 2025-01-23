@@ -4,7 +4,11 @@
             <span class="text-sm text-gray-500">{{ $post->created_at->diffForHumans() }}</span>
         </div>
         <p class="text-gray-600 mb-2">
-            {{ str($post->body)->limit(100, '...') }}
+            @if(request()->routeIs('posts.show'))
+                {{ $post->body }}
+            @else
+                {{ str($post->body)->limit(100, '...') }}
+            @endif
         </p>
         <div class="flex flex-wrap mb-4">
             @foreach($post->tags as $tag)

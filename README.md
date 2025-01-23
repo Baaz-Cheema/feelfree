@@ -80,6 +80,12 @@ git push
 - [ ]Add ability to add more tags
 - [ ]Improve UI
 
+--- 
+## Development
+Run all checks locally:
+`./check`
+Code style will be automatically fixed by php-cs-fixer.
+
 ---
 
 FeelFree is an open-sourced software licensed under the **[GNU Affero General Public License](LICENSE.md)**
