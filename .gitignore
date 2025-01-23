@@ -21,3 +21,11 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+/storage/debugbar
+docker-compose.override.yml
+.vapor/
+.env.staging
+.php-cs-fixer.cache
+**/.DS_Store
+.DS_Store
+
