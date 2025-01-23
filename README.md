@@ -76,9 +76,9 @@ git push
 
 ## Future Plans
 - [ ] Nested comments
-- [ ]Add ability to add more reactions
-- [ ]Add ability to add more tags
-- [ ]Improve UI
+- [ ] Add ability to add more reactions
+- [ ] Add ability to add more tags
+- [ ] Improve UI
 
 --- 
 ## Development
