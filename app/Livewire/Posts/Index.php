@@ -27,16 +27,16 @@ class Index extends Component
 
     public function render()
     {
-        $recentPosts = Post::query()
+        $posts = Post::query()
             ->withCount(['comments'])
             ->with(['tags'])
             ->latest($this->by == 'popular' ? 'views' : 'created_at')
             ->paginate($this->perPage);
 
-        $this->hasMore = count($recentPosts) >= $this->perPage;
+        $this->hasMore = count($posts) >= $this->perPage;
 
         return view('livewire.posts.index', [
-            'recentPosts' => $recentPosts,
+            'posts' => $posts,
         ]);
     }
 }

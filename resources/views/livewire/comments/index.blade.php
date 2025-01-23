@@ -1,5 +1,5 @@
 <!-- Comments Section -->
-<div class="bg-white rounded-lg shadow-md p-6 border border-green-100">
+<div class="bg-white rounded-lg shadow-md p-6 border border-green-100 mt-8">
     <h3 class="text-xl font-semibold text-gray-800 mb-6">Comments</h3>
 
     <!-- New Comment Form -->
