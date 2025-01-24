@@ -3,6 +3,7 @@
         <p class="text-center text-green-600">
             Developed by <a class="hover:text-green-700" href="https://twitter.com/abrardev99" target="_blank" rel="noopener">Abrar Ahmad</a>
             <br />
+            Project is open souce on <a class="hover:text-green-700" href="on <a class="hover:text-green-700" href="URL_ADDRESS.com/abrara70/laravel-website" target="_blank" rel="noopener">GitHub</a>
             <a class="hover:text-green-700" href="https://wise.com/pay/me/abrara70" target="_blank" rel="noopener">Consider supporting server cost here</a>
         </p>
     </div>
