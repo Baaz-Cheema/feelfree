@@ -15,7 +15,7 @@ class Index extends Component
     #[Url]
     public string $by = '';
 
-    public int $perPage = 1;
+    public int $perPage = 100;
     public bool $hasMore = true;
 
     public function loadMore(): void
