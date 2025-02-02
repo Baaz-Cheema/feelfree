@@ -1,4 +1,5 @@
 import axios from 'axios';
+import '../../vendor/masmerise/livewire-toaster/resources/js';
 import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.esm';
 import Tooltip from "@ryangjchandler/alpine-tooltip";
 
