@@ -8,20 +8,23 @@ use App\Models\Post;
 use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class Index extends Component
 {
     public Post $post;
 
-    #[Validate('required|string|min:3|max:1000')]
+    #[Validate('required|min:3|max:1000')]
     public string $body = '';
 
     public function save()
     {
+        $this->validate();
+
         $key = 'create-comment-' . request()->ip();
 
-        if (RateLimiter::tooManyAttempts($key, 10)) {
-            $this->addError('comment', 'Too many attempts. Please try again later.');
+        if (RateLimiter::tooManyAttempts($key, 5)) {
+            Toaster::error('Oh! Too many attempts. Please try again later.');
 
             return;
         }
@@ -33,6 +36,8 @@ class Index extends Component
         ]);
 
         $this->body = '';
+
+        Toaster::success('Comment posted!');
     }
 
     public function render()

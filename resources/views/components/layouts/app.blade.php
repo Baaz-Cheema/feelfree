@@ -24,5 +24,7 @@
 
     <x-footer />
     @livewireScriptConfig
+
+    <x-toaster-hub />
 </body>
 </html>

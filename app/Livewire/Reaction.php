@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class Reaction extends Component
 {
@@ -37,7 +38,7 @@ class Reaction extends Component
         $key = 'create-reaction-' . request()->ip() . $this->reactionableId . $this->reactionableType;
 
         if (RateLimiter::tooManyAttempts($key, 1)) {
-            $this->addError('reaction', 'Oh! Too many attempts.');
+            Toaster::error('Oh! Too many attempts. Please try again later.');
 
             return;
         }
@@ -50,5 +51,7 @@ class Reaction extends Component
             'comment' => Comment::find($this->reactionableId)->reactions()->attach(\App\Models\Reaction::where('name', $this->reaction)->first()),
             default => Post::query()->where('uuid', $this->reactionableId)->first()->reactions()->attach(\App\Models\Reaction::where('name', $this->reaction)->first()),
         };
+
+        Toaster::success('Your support has been recorded!');
     }
 }
