@@ -1,5 +1,5 @@
 <a href="{{ route('posts.show', $post->uuid) }}">
-    <div class="bg-white rounded-lg shadow-md p-6 border border-green-100 h-48 hover:shadow-lg hover:border-green-200 hover:bg-green-50">
+    <div class="bg-white rounded-lg shadow-md p-6 border border-green-100 hover:shadow-lg hover:border-green-200 hover:bg-green-50 flex flex-col">
         <div class="flex items-center justify-between mb-2">
             <span class="text-sm text-gray-500">{{ $post->created_at->diffForHumans() }}</span>
         </div>
@@ -18,7 +18,7 @@
                 </div>
             @endforeach
         </div>
-        <div class="flex items-center justify-between pt-4 border-t border-green-100">
+        <div class="flex items-center justify-between pt-4 mt-auto border-t border-green-100">
             <div class="flex items-center space-x-4 text-gray-500">
 
             </div>
@@ -36,13 +36,13 @@
                 <livewire:reaction :reactionableId="$post->uuid" reactionableType="post" reaction="support"/>
                 @if(isset($post->comments_count))
                     <button class="flex items-center text-green-600 hover:text-green-700 transition-colors">
-                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
-                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"/>
-                    </svg>
-                    <span x-data x-tooltip.raw="Leave a comment"  class="text-sm">{{ $post->comments_count }} Comment</span>
-                </button>
+                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
+                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"/>
+                        </svg>
+                        <span x-data x-tooltip.raw="Leave a comment"  class="text-sm">{{ $post->comments_count }} Comment</span>
+                    </button>
                 @endif
             </div>
         </div>
