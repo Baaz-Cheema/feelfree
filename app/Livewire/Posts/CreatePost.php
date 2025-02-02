@@ -11,6 +11,7 @@ use App\Models\Tag;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class CreatePost extends Component
 {
@@ -23,7 +24,7 @@ class CreatePost extends Component
         $key = 'create-post-' . request()->ip();
 
         if (RateLimiter::tooManyAttempts($key, 10)) {
-            $this->addError('form.body', 'Oh! Too many attempts.');
+            Toaster::error('Oh! Too many attempts. Please try again later.');
 
             return;
         }
@@ -38,6 +39,8 @@ class CreatePost extends Component
 
         $post->tags()->attach(Tag::find($this->form->tag));
         $post->reactions()->attach(Reaction::whereName('support')->first());
+
+        session()->flash('message', 'You have shared your worry anonymously.');
 
         $this->redirect('/posts/' . $post->uuid);
     }
