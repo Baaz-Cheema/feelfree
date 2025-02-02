@@ -33,7 +33,7 @@
                     </svg>
                     <span class="text-sm">{{ $post->views }}</span>
                 </div>
-                <livewire:reaction :reactionableId="$post->uuid" reactionableType="post" reaction="support"/>
+                <livewire:reaction :reactionableId="$post->uuid" reactionableType="post" reaction="support" :key="'reaction-'.$post->uuid"/>
                 @if(isset($post->comments_count))
                     <button class="flex items-center text-green-600 hover:text-green-700 transition-colors">
                         <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"

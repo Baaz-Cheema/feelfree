@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $recentPosts = Post::query()->withCount(['comments'])->with(['tags'])->latest()->limit(4)->get();
+        $recentPosts = Post::query()->withCount(['comments'])->with(['tags'])->latest()->limit(8)->get();
         $popularPosts = Post::query()->withCount(['comments'])->with(['tags'])->latest('views')->limit(4)->get();
 
         return view('home', [
