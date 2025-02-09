@@ -1,6 +1,6 @@
 <a href="{{ route('posts.show', $post->uuid) }}">
     <div
-        class="bg-white rounded-lg shadow-md p-6 border border-green-100 hover:shadow-lg hover:border-green-200 hover:bg-green-50 flex flex-col h-full">
+        class="bg-white rounded-lg shadow-md p-6 border border-green-100 hover:shadow-lg hover:border-green-200 transition-all duration-200 hover:bg-green-50 flex flex-col h-full">
         <div class="flex items-center justify-between mb-2">
             <span class="text-sm text-gray-500">{{ $post->created_at->diffForHumans() }}</span>
         </div>
